@@ -4,6 +4,6 @@ export interface Leader{
     image:string;
     designation:string;
     abbr:string;
-    descripcion:string;
+    description:string;
     featured:boolean;
 }

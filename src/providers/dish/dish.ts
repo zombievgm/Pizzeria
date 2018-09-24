@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 import {Dish} from '../../shared/dish';
 
 
+
 import{dbURL} from '../../shared/dburl';
-import{Dish} from '../../shared/dish';
 
 /*
   Generated class for the DishProvider provider.
@@ -20,5 +20,25 @@ export class DishProvider {
   constructor(public http: HttpClient) {
     console.log('Hello DishProvider Provider');
   }
+
+  getDishes(): Observable<Dish[]>{
+    return this.http.get<Dish>(dbURL + 'dish').map(
+      res => res
+    )
+  }
+  
+
+  getDish(id: number): Observable<Dish>{
+    return this.http.get<Dish>(dbURL + 'dish/' + id).map(
+    res => res
+  )
+  }
+  getFeaturedDish(): Observable<Dish>{
+    return this.http.get<Dish>(dbURL + 'dish?featured=true').map(
+    res => res
+  )
+
+  }
+  
 
 }

@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map';
 import {Promotion} from '../../shared/promotion';
 
 import{dbURL} from '../../shared/dburl';
-import{Dish} from '../../shared/dish';
 
 /*
   Generated class for the PromotionProvider provider.
@@ -20,6 +19,23 @@ export class PromotionProvider {
     console.log('Hello PromotionProvider Provider');
   }
 
+  getPromotions(): Observable<Promotion[]>{
+    return this.http.get(dbURL + 'prmotions').map(
+      res => res
+    )
+  }
+
+  getPromotion(id: number): Observable<Promotion>{
+    return this.http.get(dbURL + 'promotion/' + id).map(
+    res => res
+  )
+  }
+  getFeaturedPromotion(): Observable<Promotion>{
+    return this.http.get(dbURL + 'promotion?featured=true').map(
+    res => res
+  )
+
+  }
   
 
 }

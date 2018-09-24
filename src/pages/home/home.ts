@@ -28,18 +28,26 @@ export class HomePage implements OnInit{
     ) {
   }
 
-  getFeaturedDish(){
-    this.dishService
-    .getFeaturedDish()
+  ngOnInit(){
+    this.dishService.getFeaturedDish()
     .suscribe(
-      response => {
-        this.dish = response[0];
-        console.log(this.dish);
-      },
-      error => {
-        console.log(error);
-      }
+      dish => this.dish = dish[0],
+      error => {console.log(error)}
+    )
+
+    this.leaderService.getFeaturedLeader()
+    .suscribe(
+      leader => this.leader = leader[0],
+      error => {console.log(error)}
+    )
+
+    this.promotionService.getFeaturedPromotion()
+    .suscribe(
+      promotion => this.promotion = promotion[0],
+      error => {console.log(error)}
     )
   }
+
+
 
 }

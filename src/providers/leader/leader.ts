@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import{Observable} from 'rxjs/Observable'
 import 'rxjs/add/operator/map';
 import {Leader} from '../../shared/leader';
+import{dbURL} from '../../shared/dburl';
 
 
 
@@ -19,5 +20,24 @@ export class LeaderProvider {
   constructor(public http: HttpClient) {
     console.log('Hello LeaderProvider Provider');
   }
+
+  getLeaders(): Observable<Leader[]>{
+    return this.http.get(dbURL + 'leaders').map(
+      res => res
+    )
+  }
+
+  getLeader(id: number): Observable<Leader>{
+    return this.http.get(dbURL + 'leader/' + id).map(
+    res => res
+  )
+  }
+  getFeaturedLeader(): Observable<Leader>{
+    return this.http.get(dbURL + 'leaders?featured=true').map(
+    res => res
+  )
+
+  }
+  
 
 }
