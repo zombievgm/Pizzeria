@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import{Observable} from 'rxjs/Observable'
 import 'rxjs/add/operator/map';
 import {Promotion} from '../../shared/promotion';
-
 import{dbURL} from '../../shared/dburl';
 
 /*
@@ -19,19 +18,19 @@ export class PromotionProvider {
     console.log('Hello PromotionProvider Provider');
   }
 
-  getPromotions(): Observable<Promotion[]>{
-    return this.http.get(dbURL + 'prmotions').map(
+  getPromotions(): Observable<Promotion>{
+    return this.http.get<Promotion>(dbURL + 'prmotions').map(
       res => res
     )
   }
 
   getPromotion(id: number): Observable<Promotion>{
-    return this.http.get(dbURL + 'promotion/' + id).map(
+    return this.http.get<Promotion>(dbURL + 'promotion/' + id).map(
     res => res
   )
   }
   getFeaturedPromotion(): Observable<Promotion>{
-    return this.http.get(dbURL + 'promotion?featured=true').map(
+    return this.http.get<Promotion>(dbURL + 'promotion?featured=true').map(
     res => res
   )
 

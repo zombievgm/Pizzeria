@@ -21,19 +21,19 @@ export class LeaderProvider {
     console.log('Hello LeaderProvider Provider');
   }
 
-  getLeaders(): Observable<Leader[]>{
-    return this.http.get(dbURL + 'leaders').map(
+  getLeaders(): Observable<Leader>{
+    return this.http.get<Leader>(dbURL + 'leaders').map(
       res => res
     )
   }
 
   getLeader(id: number): Observable<Leader>{
-    return this.http.get(dbURL + 'leader/' + id).map(
+    return this.http.get<Leader>(dbURL + 'leader/' + id).map(
     res => res
   )
   }
   getFeaturedLeader(): Observable<Leader>{
-    return this.http.get(dbURL + 'leaders?featured=true').map(
+    return this.http.get<Leader>(dbURL + 'leaders?featured=true').map(
     res => res
   )
 
