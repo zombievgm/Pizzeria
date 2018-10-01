@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DishProvider} from '../../providers/dish/dish';
 import {Dish} from '../../shared/dish';
+import {DishdetailPage} from '../dishdetail/dishdetail';
 
 /**
  * Generated class for the MenuPage page.
@@ -47,6 +48,12 @@ export class MenuPage {
       error =>{
         console.log(error);
       }
+    );
+  }
+
+  dishDetails(event, dish){
+    this.navCtrl.push(DishdetailPage, {dish: dish
+    }
     );
   }
 

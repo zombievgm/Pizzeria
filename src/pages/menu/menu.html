@@ -15,5 +15,17 @@
 
 
 <ion-content padding>
+  <ion-card *ngFor= "let dish of dishes" (click)="dishDetails($event, dish)">
+    <img src="{{ dbURL + dish.image}}" alt="">
+    <ion-card-content>
+      <ion-card-title>
+        {{dish.name | uppercase}}
+        </ion-card-title>
+        <p>
+          {{dish.description}}
+        </p>
+     
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
