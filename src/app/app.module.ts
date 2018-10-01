@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { MenuPage } from '../pages/menu/menu';
+import { DishdetailPage } from '../pages/dishdetail/dishdetail';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,7 +25,8 @@ import{dbURL} from '../shared/dburl';
     HomePage,
     AboutPage,
     ContactPage,
-    MenuPage
+    MenuPage,
+    DishdetailPage
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +39,8 @@ import{dbURL} from '../shared/dburl';
     HomePage,
     AboutPage,
     ContactPage,
-    MenuPage
+    MenuPage,
+    DishdetailPage
   ],
   providers: [
     StatusBar,
