@@ -18,7 +18,9 @@ import {Comment} from '../../shared/comment';
 export class DishdetailPage {
 
   dish: Dish;
-  
+  numComments: number;
+  averageRate: string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
