@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import{Observable} from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {Dish} from '../../shared/dish';
-import{dbURL} from '../../shared/dburl';
+import {Dish} from '../../share/dish';
+import {dbURL} from '../../share/dburl';
 
 /*
   Generated class for the DishProvider provider.
@@ -18,24 +18,17 @@ export class DishProvider {
     console.log('Hello DishProvider Provider');
   }
 
-  getDishes(): Observable<Dish>{
-    return this.http.get<Dish>(dbURL + 'dishes').map(
-      res => res
-    )
-  }
-  
 
-  getDish(id: number): Observable<Dish>{
-    return this.http.get<Dish>(dbURL + 'dishes' + id).map(
+  getDishes(): Observable<Dish[]>
+{
+  return this.http.get<Dish[]>(dbURL + 'dishes').map(
     res => res
-  )
-  }
-  getFeaturedDish(): Observable<Dish>{
-    return this.http.get<Dish>(dbURL + 'dishes?featured=true').map(
-    res => res
-  )
+  );
+}
 
-  }
-  
-
+ getFeaturedDish(): Observable<Dish>{
+   return this.http.get<Dish>(dbURL + 'dishes?featured=true').map(
+     res => res
+   );
+ }
 }

@@ -1,8 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {DishProvider} from '../../providers/dish/dish';
-import {Dish} from '../../shared/dish';
-import {DishdetailPage} from '../dishdetail/dishdetail';
 
 /**
  * Generated class for the MenuPage page.
@@ -18,44 +15,11 @@ import {DishdetailPage} from '../dishdetail/dishdetail';
 })
 export class MenuPage {
 
-  dishes: Dish[];
-
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,  
-    private dishService: DishProvider, 
-    @Inject('DbURL') private dbURL
-    ) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
   }
 
-  ngOnInit(){
-    this.getDishes();
-  }
-
-  getDishes(){
-    this.dishService
-    .getDishes()
-    .subscribe(
-      response => {
-        this.dishes = response[0];
-        console.log(this.dishes);
-      },
-      error =>{
-        console.log(error);
-      }
-    );
-  }
-
-  dishDetails(event, dish){
-    this.navCtrl.push(DishdetailPage, {dish: dish
-    }
-    );
-  }
-
 }
-

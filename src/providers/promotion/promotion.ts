@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import{Observable} from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {Promotion} from '../../shared/promotion';
-import{dbURL} from '../../shared/dburl';
+import {Promotion} from '../../share/promotion';
+import {dbURL} from '../../share/dburl';
 
 /*
   Generated class for the PromotionProvider provider.
@@ -18,23 +18,18 @@ export class PromotionProvider {
     console.log('Hello PromotionProvider Provider');
   }
 
-  getPromotions(): Observable<Promotion>{
-    return this.http.get<Promotion>(dbURL + 'prmotions').map(
-      res => res
-    )
-  }
-
-  getPromotion(id: number): Observable<Promotion>{
-    return this.http.get<Promotion>(dbURL + 'promotion/' + id).map(
-    res => res
-  )
-  }
-  getFeaturedPromotion(): Observable<Promotion>{
-    return this.http.get<Promotion>(dbURL + 'promotion?featured=true').map(
-    res => res
-  )
-
-  }
   
+  getPromotions(): Observable<Promotion[]>
+{
+  return this.http.get<Promotion[]>(dbURL + 'promotions').map(
+    res => res
+  );
+}
+
+ getFeaturedPromotion(): Observable<Promotion>{
+   return this.http.get<Promotion>(dbURL + 'promotions?featured=true').map(
+     res => res
+   );
+ }
 
 }

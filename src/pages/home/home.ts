@@ -1,37 +1,41 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {DishProvider} from '../../providers/dish/dish';
-import {Dish} from '../../shared/dish';
-import {LeaderProvider} from '../../providers/leader/leader';
-import {Leader} from '../../shared/leader';
-import {PromotionProvider} from '../../providers/promotion/promotion';
-import {Promotion} from '../../shared/promotion';
+
+import { Component, OnInit,Inject } from '@angular/core';
+import { NavController} from 'ionic-angular';
+import { DishProvider} from '../../providers/dish/dish';
+import { Dish} from '../../share/dish';
+import { LeaderProvider} from '../../providers/leader/leader';
+import { Leader} from '../../share/leader';
+import { PromotionProvider} from '../../providers/promotion/promotion';
+import { Promotion} from '../../share/promotion';
+
 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-
 export class HomePage implements OnInit{
 
   dish: Dish;
   leader: Leader;
   promotion: Promotion;
 
+
   constructor(
     public navCtrl: NavController,
-    private dishService: DishProvider,
     private leaderService: LeaderProvider,
+    private dishService: DishProvider,
     private promotionService: PromotionProvider,
+
     @Inject('DbURL') private dbURL
-    ) {
-  }
+  ){}
 
   ngOnInit(){
     this.getFeaturedDish();
-  }
+    this.getFeaturedPromotion();
+    this.getFeaturedLeader();
 
+  }  
   getFeaturedDish(){
     this.dishService
     .getFeaturedDish()
@@ -40,7 +44,7 @@ export class HomePage implements OnInit{
         this.dish = response[0];
         console.log(this.dish);
       },
-      error =>{
+      error => {
         console.log(error);
       }
     );
@@ -54,7 +58,7 @@ export class HomePage implements OnInit{
         this.promotion = response[0];
         console.log(this.promotion);
       },
-      error =>{
+      error => {
         console.log(error);
       }
     );
@@ -68,10 +72,26 @@ export class HomePage implements OnInit{
         this.leader = response[0];
         console.log(this.leader);
       },
-      error =>{
+      error => {
         console.log(error);
       }
     );
   }
 
 }
+
+
+
+
+
+
+
+
+  /* ES UNA INSTANCIA DEL PROVIDER QUE CREAMOS EN EL CONSTRUCTOR ( THIS) POR QUE ESTAMOS EN LA MISMA 
+  CLASE // GETFEA
+TUREDDISH = metodo(funcion) y se manda a llamar  y se suscribe a una promesa 
+  ( a que le regrese un valor)  cacha 0 que es el valor del arreglo y la respuesta o el error lo 
+  marca en la consola */
+
+
+

@@ -5,27 +5,17 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+
+  <ion-navbar color="danger">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Menu</ion-title>
+    <ion-title>Pizzeria</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 
 <ion-content padding>
-  <ion-card *ngFor= "let dish of dishes" (click)="dishDetails($event, dish)">
-    <img src="{{ dbURL + dish.image}}" alt="">
-    <ion-card-content>
-      <ion-card-title>
-        {{dish.name | uppercase}}
-        </ion-card-title>
-        <p>
-          {{dish.description}}
-        </p>
-     
-    </ion-card-content>
-  </ion-card>
 
 </ion-content>
