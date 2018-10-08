@@ -1,4 +1,3 @@
-
 import { Component, OnInit,Inject } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { DishProvider} from '../../providers/dish/dish';
