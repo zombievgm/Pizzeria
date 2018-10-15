@@ -1,6 +1,11 @@
 // http://ionicframework.com/docs/theming/
 
-
+ion-content.navMenu{
+    background-color: rgb(255, 236, 127);
+}
+ion-list button {
+    background-color: rgb(255, 236, 127) !important;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These

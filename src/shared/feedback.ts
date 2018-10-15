@@ -7,5 +7,4 @@ export interface Feedback{
     message:string;
     agree:boolean;
 }
-
 export const ContactType=['None','Tel','Email'];

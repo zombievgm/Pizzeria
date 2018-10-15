@@ -1,96 +1,76 @@
-import { Component, OnInit,Inject } from '@angular/core';
-import { NavController} from 'ionic-angular';
-import { DishProvider} from '../../providers/dish/dish';
-import { Dish} from '../../share/dish';
-import { LeaderProvider} from '../../providers/leader/leader';
-import { Leader} from '../../share/leader';
-import { PromotionProvider} from '../../providers/promotion/promotion';
-import { Promotion} from '../../share/promotion';
+import { Component, OnInit, Inject } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
+import {DishProvider} from '../../providers/dish/dish';
+import {PromotionProvider} from '../../providers/promotion/promotion';
+import {LeaderProvider} from '../../providers/leader/leader';
+
+import {Dish} from'../../shared/dish'; 
+import {Promotion} from'../../shared/promotion'; 
+import {Leader} from'../../shared/leader'; 
 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
 
-  dish: Dish;
-  leader: Leader;
-  promotion: Promotion;
+  dish:Dish;
+  promotion:Promotion;
+  leader:Leader;
 
-
-  constructor(
+  constructor(  //nuestro constructor , en el estamos definiendo el dishService que es el dishProvider
     public navCtrl: NavController,
-    private leaderService: LeaderProvider,
     private dishService: DishProvider,
+    private leaderService: LeaderProvider,
     private promotionService: PromotionProvider,
-
     @Inject('DbURL') private dbURL
-  ){}
 
+    ) 
+    {
+
+    }
+
+
+
+    getFeaturedDish(){
+      this.dishService //es una instancia del provider, el provider es dish provider
+      .getFeaturedDish()
+      .subscribe(
+        response => {
+          this.dish=response[0];
+          console.log('holis');//this.dish;
+        }
+      )
+    }
+
+    
+    getFeaturedPromotion(){
+      this.promotionService //es una instancia del provider, el provider es dish provider
+      .getFeaturedPromotion()
+      .subscribe(
+        response => {
+          this.promotion=response[0];
+          console.log(this.promotion);//this.dish;
+        }
+      )
+    }
+    getFeaturedLeader(){
+      this.leaderService//es una instancia del provider, el provider es dish provider
+      .getFeaturedLeader()
+      .subscribe(
+        response => {
+          this.leader=response[0];
+          console.log(this.leader);//this.dish;
+        }
+      )
+    }
+ 
   ngOnInit(){
-    this.getFeaturedDish();
-    this.getFeaturedPromotion();
-    this.getFeaturedLeader();
-
-  }  
-  getFeaturedDish(){
-    this.dishService
-    .getFeaturedDish()
-    .subscribe(
-      response => {
-        this.dish = response[0];
-        console.log(this.dish);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  getFeaturedPromotion(){
-    this.promotionService
-    .getFeaturedPromotion()
-    .subscribe(
-      response => {
-        this.promotion = response[0];
-        console.log(this.promotion);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  getFeaturedLeader(){
-    this.leaderService
-    .getFeaturedLeader()
-    .subscribe(
-      response => {
-        this.leader = response[0];
-        console.log(this.leader);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  this.getFeaturedDish();
+  this.getFeaturedLeader();
+  this.getFeaturedPromotion();
   }
 
 }
-
-
-
-
-
-
-
-
-  /* ES UNA INSTANCIA DEL PROVIDER QUE CREAMOS EN EL CONSTRUCTOR ( THIS) POR QUE ESTAMOS EN LA MISMA 
-  CLASE // GETFEA
-TUREDDISH = metodo(funcion) y se manda a llamar  y se suscribe a una promesa 
-  ( a que le regrese un valor)  cacha 0 que es el valor del arreglo y la respuesta o el error lo 
-  marca en la consola */
-
-
-

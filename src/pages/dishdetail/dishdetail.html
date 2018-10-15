@@ -6,13 +6,52 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>dishdetail</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{dish.name | uppercase}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-card color="primary" *ngIf="dish">
+        <img src="{{dbURL + dish.image}}" />
+        <ion-card-content color=primary>
+          <ion-card-title>
+            {{dish.name | uppercase}}
+          </ion-card-title>
+          <p>
+            {{dish.description}}
+          </p>
+        </ion-card-content>
 
+        <ion-row> 
+          <ion-col>
+            <button ion-button icon-left small clear color="secondary">
+                <ion-icon name="star"></ion-icon>
+                <div>{{averageRat}} Stars</div>  
+            </button>
+          </ion-col>
+
+          <ion-col>
+            <button ion-button icon-left small clear color="secondary">
+                <ion-icon name="text"></ion-icon>
+                <div>{{numComments}} Comments</div>  
+            </button>
+          </ion-col>
+        </ion-row>
+    
+
+        <ion-list>
+            <ion-item *ngFor="let comment of dish.comments" color="secondary">
+            <p>{{comment.comment}}</p>
+            <p>{{comment.rating}} Stars</p>
+            <p>
+              <span>
+                {{comment.author}} - {{comment.date | date}}
+              </span>
+            </p>
+            </ion-item>
+        </ion-list>
+      </ion-card>
 </ion-content>
