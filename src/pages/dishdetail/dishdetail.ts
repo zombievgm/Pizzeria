@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Dish} from'../../shared/dish'; 
 import {Comment} from'../../shared/comment'; 
 
+import {FavoriteProvider} from '../../providers/favorite/favorite';
+
 /**
  * Generated class for the DishdetailPage page.
  *
@@ -21,9 +23,11 @@ export class DishdetailPage implements OnInit{
   numComments:number;
   averageRat: string;
   total: any;
+  favorite:boolean;
   
 
   constructor(
+    private favoriteService : FavoriteProvider,
     public navCtrl: NavController, 
     public navParams: NavParams,
     @Inject('DbURL') private dbURL
@@ -32,6 +36,7 @@ export class DishdetailPage implements OnInit{
     ) 
      {
       this.dish = navParams.get('dish');
+      this.favorite=this.favoriteService.isFavorite(this.dish.id);
       this.numComments = this.dish.comments.length;
     
 
@@ -53,6 +58,11 @@ export class DishdetailPage implements OnInit{
  
   }
 
-  
+  addToFavorites(){
+    this.favoriteService.addToFavorites(this.dish.id);
+    this.favorite=this.favoriteService.isFavorite(this.dish.id);
+  }
+
+
 }
 

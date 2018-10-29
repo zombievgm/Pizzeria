@@ -8,6 +8,7 @@ import { AboutPage} from '../pages/about/about';
 import { MenuPage } from '../pages/menu/menu';
 import { ContactPage} from '../pages/contact/contact';
 import { DishdetailPage} from '../pages/dishdetail/dishdetail';
+import { FavoritesPage} from '../pages/favorites/favorites';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +18,7 @@ import { PromotionProvider } from '../providers/promotion/promotion';
 import { HttpClientModule } from '@angular/common/http';
 
 import {dbURL} from '../shared/dburl';
+import { FavoriteProvider } from '../providers/favorite/favorite';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {dbURL} from '../shared/dburl';
     MenuPage,
     AboutPage,
     DishdetailPage,
-    ContactPage
+    ContactPage,
+    FavoritesPage,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import {dbURL} from '../shared/dburl';
     DishProvider,
     LeaderProvider,
     PromotionProvider,
-    {provide: 'DbURL', useValue: dbURL}
+    {provide: 'DbURL', useValue: dbURL},
+    FavoriteProvider
   ]
 })
 export class AppModule {}
